@@ -2,29 +2,47 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-  }
+}
   :root{
     --padding-1:1rem;
+    --radius:10px;
+    --dblue:#10111b;
+    --dgreen:#00966B;
+    --lgreen:#00CE43;
+    --lwhite:#cbd5e1;
+    --lred:#FD0122;
+}
+@font-face {
+    font-family: myFont;
+    src: url(resources2/Nunito-Regular.ttf  );
+}
+html{
+    font-family: myFont;
 }
 #main,
 .side-nav>ul,
 #head,#head-1,#head-2,#head-3,#head-4,
-#main-content,#main-left,#cards{
+#main-content,#main-left,#cards,
+#announcement,#trends,#tren-con{
     display: grid;
 }
 #main{
     height: 100vh;
-    grid-template: 1fr 4fr/1fr 5fr;
-    
+    grid-template: 1fr 4fr/1fr 5fr; 
 }
 #sidebar{
     color: white;
-    background-color: rgb(0, 146, 243);
+    background-color: var(--dblue);
     grid-row: 1/3;
     padding: var(--padding-1);
 }
 #sidebar>div{
     margin-bottom: 2rem;
+}
+.s-icon{
+    filter: invert(1);
+    height: 20px;
+    width: 20px;
 }
 
 #nav-1>ul{
@@ -33,16 +51,18 @@
 #nav-2>ul{
     grid-template: repeat(3,1fr)/30px 1fr;
 }
-.side-nav>ul>li:nth-child(odd){
+.side-nav li:nth-child(odd){
     justify-self:center; 
 }
 .side-nav li{
-    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
 }
 
 #head{
-    background-color: white;
     grid-template: 50px 1fr/1.5fr 1fr;
+    border-bottom: 3px solid rgb(168, 167, 167);
 }
 .pad{
     padding: var(--padding-1);
@@ -54,11 +74,19 @@
 }
 
 #searchbar{
-    width: 100%;
+    border-radius: var(--radius);
+    font-family:myFont;
+    font-size: 16px;
+    width: 110%;
+    height: 1.5rem;
+    padding: 5px;
+    margin-left: -1rem;
+ 
 }
 #head-2{
     grid-template-columns: 1fr 2fr;
     align-items: center;
+    font-weight: bolder;
 }
 #head-2>div,#head-1>div {
     padding: 0 1rem;
@@ -68,6 +96,11 @@
 }
 #head-3{
     grid-template-columns: 1fr 4fr;
+    font-weight: bolder;
+}
+#head-3 span{
+    font-size: 11px;
+    line-height: 1.8;
 }
 #head-4{
     grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
@@ -78,12 +111,19 @@
 }
 .btn{
     width:100px;
-    padding: 5px 10px;
+    background-color: var(--dgreen);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
 }
 #main-content{
-    background-color: rgb(197, 197, 197);
+    background-color: var(--lwhite);
     grid-template:repeat(2,1fr)/3fr 1fr;
     grid-column: 2;
+}
+#main-content hr{
+    color: rgb(161, 161, 161);
 }
 #main-left{
     grid-template-rows: 20px 1fr;
@@ -91,19 +131,81 @@
     padding: 1rem;
 }
 #cards{
+    color: #10111b;
     grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
     gap: 10px;
+  
+}
+#announcement,#trends{
+    grid-template-rows: 20px 1fr;
+
+}
+.content{
+    background-color: white;
+    border-radius: var(--radius);
+}
+#announcement hr{
+    margin: 1rem 0;
+}
+#announcement h1{
+    margin-bottom: 5px;
+}
+#tren-con{
+    grid-template: repeat(4,1fr)/1fr 2fr;
+    align-items: center;
+}
+
+#tren-con div:nth-child(even){
+    line-height: 1.1;  
+}
+#tren-con div:nth-child(odd){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+}
+.hero-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    object-fit: cover;
+    width:50px;
+    height: 50px;
+    margin-right: 10px;  
+    
+}
+.shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.13);
 }
 .card{
-    border-radius: 5px;
-    border-left: 5px solid red;
+    border-radius: var(--radius);
+    border-left: 10px solid var(--lred);
     background-color: white;
     padding: var(--padding-1);
+}
+.card h1,#announcement h1,#tren-con h1{
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+#announcement h1,#tren-con h1{
+    font-size: 14px;
+}
+#announcement p,#tren-con p{
+    font-size: 13px;
+}
+.card p,#announcement p,#tren-con p{
+    color: rgb(104, 104, 104);
+    line-height: 1.3;
 }
 .icons{
     display: flex;
     padding: 1rem;
-    gap: 5px;
+    gap: 10px;
     flex-flow: row nowrap;
     justify-content: end;
+    
+}
+.icons path{
+    fill: rgb(94, 94, 94);
 }
