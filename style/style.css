@@ -3,18 +3,18 @@
     padding: 0;
     margin: 0;
 }
-  :root{
+:root{
     --padding-1:1rem;
     --radius:10px;
     --dblue:#10111b;
     --dgreen:#00966B;
     --lgreen:#00CE43;
-    --lwhite:#cbd5e1;
+    --lwhite:#e1e2e4;
     --lred:#FD0122;
 }
 @font-face {
     font-family: myFont;
-    src: url(resources2/Nunito-Regular.ttf  );
+    src: url(../resources2/Nunito-Regular.ttf);
 }
 html{
     font-family: myFont;
@@ -37,12 +37,30 @@ html{
     padding: var(--padding-1);
 }
 #sidebar>div{
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 .s-icon{
     filter: invert(1);
     height: 20px;
     width: 20px;
+}
+#logo{    
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: 1rem;
+}
+#logo img{
+    height: 50px;
+    filter: drop-shadow(1px 0 0 white) 
+        drop-shadow(0 1px 0 white)
+        drop-shadow(-1px 0 0 white) 
+        drop-shadow(0 -1px 0 white);
+}
+#logo h1{
+    font-weight: bold;
+    font-size: 22px;
+    text-transform: uppercase;
 }
 
 #nav-1>ul{
@@ -69,19 +87,26 @@ html{
 }
 #head-1{
     grid-template-columns: 50px 1fr;
-    padding-left: 50px;
+    padding-left: 2rem;
     align-items: center;
 }
 
 #searchbar{
     border-radius: var(--radius);
     font-family:myFont;
+    background-color: var(--lwhite);
     font-size: 16px;
     width: 110%;
     height: 1.5rem;
-    padding: 5px;
+    padding: 15px;
     margin-left: -1rem;
+    border: none;
+    outline: none;
  
+}
+#searchbar:active{
+    border: none;
+    outline: none;
 }
 #head-2{
     grid-template-columns: 1fr 2fr;
@@ -91,24 +116,49 @@ html{
 #head-2>div,#head-1>div {
     padding: 0 1rem;
 }
+#head-2 div:nth-child(2) p{
+    display: flex;
+    align-items: center;
+}
+#head-2 div:nth-child(2) span{
+    margin-right: 1.5rem;
+}
+.image-icon{
+    border-radius: 50%;
+    object-fit: cover;
+    width:30px;
+    height: 30px;
+}
 #bell{
     text-align: right;
 }
 #head-3{
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 3fr;
     font-weight: bolder;
 }
+#head-3 p{
+    font-size: 22px;
+    font-weight: bold;
+}
 #head-3 span{
-    font-size: 11px;
-    line-height: 1.8;
+    font-size: 12px !important;
+    line-height: 3;
 }
 #head-4{
     grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
     justify-items: center;
 }
+.main-icon{
+    border-radius: 50%;
+    object-fit: cover;
+    width: 60px;
+    height: 60px; 
+}
+
 #head-4>div{
     padding: 2px;
 }
+
 .btn{
     width:100px;
     background-color: var(--dgreen);
@@ -116,6 +166,11 @@ html{
     border: none;
     padding: 10px;
     border-radius: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.btn:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 15px 0 rgba(0, 0, 0, 0.13);
 }
 #main-content{
     background-color: var(--lwhite);
@@ -138,14 +193,28 @@ html{
 }
 #announcement,#trends{
     grid-template-rows: 20px 1fr;
+}
+#announcement div:nth-child(2){
+    display: grid;
+    grid-template-rows:1fr 2px 1fr 2px 1fr;
+    gap:1rem;
+}
+#announcement div:nth-child(2) div:nth-child(odd){
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
 
+}
+#announcement p:hover,{
+    text-decoration: underline;
 }
 .content{
     background-color: white;
     border-radius: var(--radius);
 }
-#announcement hr{
-    margin: 1rem 0;
+.title{
+    font-weight: bolder;
+    letter-spacing: 3px;
 }
 #announcement h1{
     margin-bottom: 5px;
@@ -153,27 +222,26 @@ html{
 #tren-con{
     grid-template: repeat(4,1fr)/1fr 2fr;
     align-items: center;
-}
 
+}
+#tren-con div{
+    transition: transform .1s;
+}
 #tren-con div:nth-child(even){
     line-height: 1.1;  
 }
-#tren-con div:nth-child(odd){
+#tren-con div:nth-child(odd),.center{
     display: flex;
     align-items: center;
     justify-content: center;
  
 }
 .hero-icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 50%;
     object-fit: cover;
     width:50px;
-    height: 50px;
-    margin-right: 10px;  
-    
+    height: 50px; 
+    margin-right: 10px; 
 }
 .shadow{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.13);
@@ -183,6 +251,12 @@ html{
     border-left: 10px solid var(--lred);
     background-color: white;
     padding: var(--padding-1);
+    transition: transform .2s;
+}
+.card:hover,#tren-con div:hover{
+    -ms-transform: scale(1.04); 
+    -webkit-transform: scale(1.04); 
+    transform: scale(1.04);
 }
 .card h1,#announcement h1,#tren-con h1{
     margin-bottom: 5px;
@@ -198,14 +272,16 @@ html{
     color: rgb(104, 104, 104);
     line-height: 1.3;
 }
-.icons{
+.end{
     display: flex;
+    justify-content: flex-end;
+}
+.icons{
     padding: 1rem;
     gap: 10px;
-    flex-flow: row nowrap;
-    justify-content: end;
-    
+    flex-flow: row nowrap;   
 }
 .icons path{
     fill: rgb(94, 94, 94);
 }
+
