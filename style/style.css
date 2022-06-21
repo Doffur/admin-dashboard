@@ -385,5 +385,5 @@ html{
     #nav-2>ul{
         grid-template: 1fr/repeat(auto-fit,minmax(120px,1fr));
     }
-
+    
 }
