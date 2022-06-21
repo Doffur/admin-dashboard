@@ -8,7 +8,7 @@
     --radius:10px;
     --dblue:#10111b;
     --dgreen:#00966B;
-    --lgreen:#00CE43;
+    --orange:#ec7d14;
     --lwhite:#e1e2e4;
     --lred:#FD0122;
 }
@@ -20,7 +20,7 @@ html{
     font-family: myFont;
 }
 #main,
-.side-nav>ul,
+.side-nav>ul,#nav-1>ul div,#nav-2>ul div,
 #head,#head-1,#head-2,#head-3,#head-4,
 #main-content,#main-left,#cards,
 #announcement,#trends,#tren-con{
@@ -61,17 +61,49 @@ html{
     font-weight: bold;
     font-size: 22px;
     text-transform: uppercase;
+
 }
 
 #nav-1>ul{
-    grid-template: repeat(6,1fr)/30px 1fr;
+    grid-template: repeat(6,1fr)/1fr;
+}
+#nav-1>ul div{
+    grid-template-columns: 30px 1fr;
 }
 #nav-2>ul{
-    grid-template: repeat(3,1fr)/30px 1fr;
+    grid-template: repeat(3,1fr)/1fr;
+}
+#nav-2>ul div{
+    grid-template-columns: 30px 1fr;
 }
 .side-nav li:nth-child(odd){
     justify-self:center; 
 }
+.side-nav li:nth-child(even){
+    display: inline-block;
+    position: relative;
+  
+}
+.side-nav li:nth-child(even):after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 10px;
+    left: 6px;
+    background-color: var(--orange);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+
+}
+.side-nav li:nth-child(even):hover{
+       color: var(--orange);
+}
+.side-nav li:nth-child(even):hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
 .side-nav li{
     display: flex;
     align-items: center;
@@ -92,21 +124,21 @@ html{
 }
 
 #searchbar{
-    border-radius: var(--radius);
+    border-radius: 20px;
     font-family:myFont;
     background-color: var(--lwhite);
     font-size: 16px;
-    width: 110%;
+    width: 100%;
     height: 1.5rem;
     padding: 15px;
     margin-left: -1rem;
     border: none;
     outline: none;
- 
 }
-#searchbar:active{
+#searchbar:active,#searchbar:hover{
     border: none;
     outline: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.13);
 }
 #head-2{
     grid-template-columns: 1fr 2fr;
@@ -147,6 +179,7 @@ html{
 #head-4{
     grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
     justify-items: center;
+
 }
 .main-icon{
     border-radius: 50%;
@@ -157,11 +190,13 @@ html{
 
 #head-4>div{
     padding: 2px;
+    display: grid;
+    align-items: center;
 }
 
 .btn{
     width:100px;
-    background-color: var(--dgreen);
+    background-color: var(--orange);
     color: white;
     border: none;
     padding: 10px;
@@ -205,7 +240,7 @@ html{
     flex-flow: column;
 
 }
-#announcement p:hover,{
+#announcement p:hover{
     text-decoration: underline;
 }
 .content{
@@ -223,9 +258,11 @@ html{
     grid-template: repeat(4,1fr)/1fr 2fr;
     align-items: center;
 
+
 }
 #tren-con div{
     transition: transform .1s;
+    margin: 1rem 0;
 }
 #tren-con div:nth-child(even){
     line-height: 1.1;  
@@ -242,6 +279,7 @@ html{
     width:50px;
     height: 50px; 
     margin-right: 10px; 
+
 }
 .shadow{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.13);
@@ -254,10 +292,11 @@ html{
     transition: transform .2s;
 }
 .card:hover,#tren-con div:hover{
-    -ms-transform: scale(1.04); 
-    -webkit-transform: scale(1.04); 
-    transform: scale(1.04);
+    -ms-transform: scale(1.02); 
+    -webkit-transform: scale(1.02); 
+    transform: scale(1.02);
 }
+
 .card h1,#announcement h1,#tren-con h1{
     margin-bottom: 5px;
     font-weight: bold;
@@ -283,5 +322,68 @@ html{
 }
 .icons path{
     fill: rgb(94, 94, 94);
+    transition: transform 1.0s;
+}
+.icons path:hover{
+    fill: var(--lred);
+    -ms-transform: scale(1.09); 
+    -webkit-transform: scale(1.09); 
+    transform: scale(1.09);
 }
 
+@media only screen and (max-width: 1095px){
+    #main-content{
+        grid-template:0 0/1fr;
+    }
+}
+@media only screen and (max-width: 644px){
+    #main{
+        grid-template: 1fr 2fr 4fr/1fr; 
+    }
+    #logo{
+        justify-content: center;
+    }
+    #sidebar{
+        grid-template: repeat(3,1fr)/ 1fr; 
+        grid-area:1/1/2/3
+    }
+    #sidebar li{
+        justify-content: center;
+    }
+    #head{
+        grid-template: 50px repeat(2,1fr)/1fr 50px;
+        grid-area:2/1/3/3;
+    }
+    #head-1{
+        grid-area:1/1/2/3;
+    }
+    #head-2 div:nth-child(2){
+        display: none;
+    }
+    #head-2 div:nth-child(1){
+        padding: 0rem;
+    }
+    #head-2 {
+        grid-area:2/2/3/3;
+        padding:0;
+    } 
+    #head-3{
+        grid-area:2/1/3/2;
+        padding-right:0rem;
+        padding-left:0rem;
+    }
+    #head-4{
+        grid-area:3/1/4/4
+    }
+    #head-4 div{
+        height: 40px;
+    }
+    #nav-1>ul{
+        align-items: center;
+        grid-template: 1fr/repeat(auto-fit,minmax(120px,1fr));
+    }
+    #nav-2>ul{
+        grid-template: 1fr/repeat(auto-fit,minmax(120px,1fr));
+    }
+
+}
